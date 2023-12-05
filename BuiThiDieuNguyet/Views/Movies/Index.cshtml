@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BuiThiDieuNguyet.Models.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>MSSV-Nguyen Van A</h2>
+<div class="container">
+    <div class="row grid-demo">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4">
+                <img src="data:image;base64,@System.Convert.ToBase64String(item.Picture)" style="width: 200px;" />
+                <p>
+                    @Html.DisplayNameFor(model => model.Title):
+                    @Html.DisplayFor(modelItem => item.Title)
+                </p>
+                <p>
+                    @Html.DisplayNameFor(model => model.Rated):
+                @Html.DisplayFor(modelItem => item.Rated)
+                </p>
+                <p>
+                    @Html.DisplayNameFor(model => model.Price):
+                @Html.DisplayFor(modelItem => item.Price)
+                </p>
+                <p>
+                    @Html.DisplayNameFor(model => model.Summary):
+                    @Html.DisplayFor(modelItem => item.Summary)
+                </p>
+                <p>
+                    @Html.DisplayNameFor(model => model.ReleaseDate):
+                    @item.ReleaseDate.ToString("dd/MM/yyyy")
+                </p>
+                <p>
+                    @Html.DisplayNameFor(model => model.Genre):
+                    @Html.DisplayFor(modelItem => item.GenreObj.Name)
+                </p>
+            @Html.ActionLink("Mua", "AddToCart",
+            new { id = item.ID })
+            </div>
+            }
+    </div>
+</div>
